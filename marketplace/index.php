@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_array($result)) {
         </div>
         <span class='titulo_anunc'>$nome_prod</span>
         <span class='preco'>R$ ".$preco."</span>
-        <form action='anuncio.php?id=".$id_anunc."'>
+        <form action='carrinho.php?id=".$id_anunc."'>
             <button class='btn_anunc'>COMPRAR</button>
         <form>
     </div>";
