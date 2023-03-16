@@ -74,6 +74,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="date"],
 input[type="tel"] {
   width: 100%;
   padding: 10px;
@@ -110,28 +111,32 @@ input[type="submit"]:hover {
             <div class="cadastro">
                 <h1>Cadastro</h1>
                 <div class="entrar-items">
+                  <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome" required>
-                    <label for="nome">Nome Completo:</label>
                 </div>
                 <div class="entrar-items">
+                  <label for="cpf">CPF:</label>
                     <input type="text" id="cpf" name="cpf" required >
-                    <label for="cpf">CPF:</label>
                 </div>
                 <div class="entrar-items">
+                  <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required >
-                    <label for="email">Email:</label>
                 </div>
                 <div class="entrar-items">
+                  <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" required>
-                    <label for="senha">Senha:</label>
                 </div>
                 <div class="entrar-items">
+                  <label for="conf_senha">Confirmar Senha:</label>
                     <input type="password" id="conf_senha" name="conf_senha" required>
-                    <label for="conf_senha">Confirmar Senha:</label>
                 </div>
                 <div class="entrar-items">
-                    <input type="text" id="celular" required>
-                    <label for="celular">Celular:</label>
+                  <label for="celular">Celular:</label>
+                    <input type="text" id="celular" name="celular" required>
+                </div>
+                <div class="entrar-items">
+                    <label for="data_nasc">Data de nascimento:</label>
+                    <input type="date" id="data_nasc" name="data_nasc" required>
                 </div>
                 <input type="hidden" name="pagina_anterior" value="<?php echo $pagina_anterior ?>">
                 <div class="btn-cad justify"><input type="submit" onclick="return verificar" value="Cadastrar"></div>
