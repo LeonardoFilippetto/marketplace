@@ -13,6 +13,7 @@ if(isset($_POST['pagina_anterior'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se</title>
+    <script defer src="js/cadastro_inicio.js"></script>
     <style>
    /* Reset default browser styles */
 * {
@@ -72,10 +73,10 @@ label {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="email"],
 input[type="password"],
-input[type="date"],
-input[type="tel"] {
+input[type="date"] {
   width: 100%;
   padding: 10px;
   border: none;
@@ -84,7 +85,18 @@ input[type="tel"] {
   font-size: 16px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+
 input[type="submit"] {
+  width: 100%;
   background-color: #333;
   color: #fff;
   border: none;
@@ -116,7 +128,7 @@ input[type="submit"]:hover {
                 </div>
                 <div class="entrar-items">
                   <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" required >
+                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="cpf" name="cpf" required >
                 </div>
                 <div class="entrar-items">
                   <label for="email">Email:</label>
@@ -132,14 +144,14 @@ input[type="submit"]:hover {
                 </div>
                 <div class="entrar-items">
                   <label for="celular">Celular:</label>
-                    <input type="text" id="celular" name="celular" required>
+                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="celular" name="celular" required>
                 </div>
                 <div class="entrar-items">
                     <label for="data_nasc">Data de nascimento:</label>
                     <input type="date" id="data_nasc" name="data_nasc" required>
                 </div>
                 <input type="hidden" name="pagina_anterior" value="<?php echo $pagina_anterior ?>">
-                <div class="btn-cad justify"><input type="submit" onclick="return verificar" value="Cadastrar"></div>
+                <div class="btn-cad justify"><input type="submit" onclick="return verificar()" value="Cadastrar"></div>
             </div>
         </div>
     </form>

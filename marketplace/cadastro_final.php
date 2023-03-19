@@ -1,28 +1,25 @@
 <?php
-
 require("conexao.php");
 $hidden_inputs = "";
 if(isset($_POST['pagina_anterior'])){
     $pagina_anterior=$_POST['pagina_anterior'];//input hidden
-    $hidden_inputs = "<input type='hidden' name='pagina_anterior' value='".$pagina_anterior.">";
+    $hidden_inputs = "<input type='hidden' name='pagina_anterior' value='".$pagina_anterior."'>";
 }
 
 if(isset($_POST['email'])){
-    echo $_POST['data'];
+    echo $_POST['data_nasc'];
     session_start();
     if(!isset($_SESSION["senha"])){
         $options = ['cost' => 12,];
         $_SESSION["senha"]=password_hash($_POST['senha'],   PASSWORD_BCRYPT, $options);
     }
-    $hidden_inputs .= "<input type='hidden' name='nome' value='".$_POST['nome'].">";
-    $hidden_inputs .= "<input type='hidden' name='cpf' value='".$_POST['cpf'].">";
-    $hidden_inputs .= "<input type='hidden' name='email' value='".$_POST['email'].">";
-    $hidden_inputs .= "<input type='hidden' name='senha' value='".$_SESSION['senha'].">";
-    $hidden_inputs .= "<input type='hidden' name='celular' value='".$_POST['celular'].">";
-    $hidden_inputs .= "<input type='hidden' name='data' value='".$_POST['data'].">";
-
+    $hidden_inputs .= "<input type='hidden' name='nome' value='".$_POST['nome']."'>";
+    $hidden_inputs .= "<input type='hidden' name='cpf' value='".$_POST['cpf']."'>";
+    $hidden_inputs .= "<input type='hidden' name='email' value='".$_POST['email']."'>";
+    $hidden_inputs .= "<input type='hidden' name='celular' value='".$_POST['celular']."'>";
+    $hidden_inputs .= "<input type='hidden' name='data_nasc' value='".$_POST['data_nasc']."'>";
 }
-if(isset($_POST['numero'])){
+/*if(isset($_POST['numero'])){
     $numero_form=$_POST['numero'];
     $complemento_form=$_POST['complemento'];
     $logradouro_form=$_POST['logradouro'];
@@ -33,8 +30,7 @@ if(isset($_POST['numero'])){
 
     $query = "INSERT INTO usuarios (cep, logradouro, data, numero, bairro, complemento, cidade, referencia, nome, cpf, email, senha, celular) VALUES ($cep_form, $logradouro_form, $data_form, $numero_form, $bairro_form, $complemento_form)";
     $result = mysqli_query($con, $query);
-
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -105,7 +101,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="tel"] {
+input[type="number"] {
   width: 100%;
   padding: 10px;
   border: none;
@@ -114,7 +110,18 @@ input[type="tel"] {
   font-size: 16px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+
 input[type="submit"] {
+  width: 100%;;
   background-color: #333;
   color: #fff;
   border: none;
@@ -136,39 +143,39 @@ input[type="submit"]:hover {
             <li><a href="entrar.php"><h1>‹ Voltar</h1></a></li>
         </ul>
     </div>
-    <form method="POST" action="cadastro_final.php">
+    <form method="POST" action="confirmar_email.php">
         <div class="cadastre-se">
             <div class="cadastro">
                 <h1>Cadastro</h1>
                 <div class="entrar-items">
+                  <label for="cep">CEP:</label>
                     <input type="text" id="cep" name="cep" required>
-                    <label for="cep">CEP:</label>
                 </div>
                 <div class="entrar-items">
+                  <label for="logradouro">Logradouro:</label>
                     <input type="text" id="l" name="logradouro" required >
-                    <label for="logradouro">Logradouro:</label>
                 </div>
                 <div class="entrar-items">
-                    <input type="numero text" id="numero" name="numero" required >
-                    <label for="numero">Numero:</label>
+                  <label for="numero">Numero:</label>
+                    <input type="number" id="numero" name="numero" required >
                 </div>
                 <div class="entrar-items">
-                    <input type="password" id="complemento" name="complemento" required>
-                    <label for="complemento">Complemento:</label>
+                  <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento" name="complemento" required>
                 </div>
                 <div class="entrar-items">
-                    <input type="bairro" id="bairro" name="bairro" required>
-                    <label for="bairro">Bairro:</label>
+                  <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" required>
                 </div>
                 <div class="entrar-items">
-                    <input type="cidade" id="cidade" name="cidade" required>
-                    <label for="cidade">Cidade:</label>
+                  <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" required>
                 </div>
                 <div class="entrar-items">
-                    <input type="referencia" id="referencia" required>
-                    <label for="referencia">Referência:</label>
+                  <label for="referencia">Referência:</label>
+                    <input type="text" id="referencia" required>
                 </div>
-                <?php echo $hidden_inputs ?>
+                <?php echo $hidden_inputs; ?>
                 <div class="btn-cad justify"><input type="submit" onclick="return verificar" value="Cadastrar"></div>
             </div>
         </div>
