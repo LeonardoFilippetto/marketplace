@@ -76,7 +76,8 @@ input[type="text"],
 input[type="number"],
 input[type="email"],
 input[type="password"],
-input[type="date"] {
+input[type="date"],
+select {
   width: 100%;
   padding: 10px;
   border: none;
@@ -120,8 +121,68 @@ input[type="submit"]:hover {
     </div>
     <form method="POST" action="cadastro_final.php">
         <div class="cadastre-se">
-            <div class="cadastro">
-                <h1>Cadastro</h1>
+            <h1>Cadastro</h1>
+            <div id="tipo_usuario">
+              <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica()" checked="checked"> <label for="cad_fis" style="width:30%;">Pessoa Física</label>
+
+              <input type="radio" id="cad_jur" name="cad" value="jur" onclick="cadastroJuridica()" /> <label for="cad_jur" style="width:30%;">Pessoa Jurídica</label><br>
+            </div>
+            
+            <div class="cadastro" id="form_cnpj" style="display:none">
+                <div class="entrar-items">
+                  <label for="nome">Nome Completo do Responsável:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="entrar-items">
+                  <label for="cnpj">CNPJ:</label>
+                    <input type="number" onKeyPress="if(this.value.length==14) return false;" id="cnpj" name="cnpj" required >
+                </div>
+                <div class="entrar-items">
+                  <label for="nome_fant">Nome Fantasia:</label>
+                    <input type="text" id="nome_fant" name="nome_fant" required >
+                </div>
+                <div class="entrar-items">
+                  <label for="raz_soc">Razão Social:</label>
+                    <input type="text" id="raz_soc" name="raz_soc" required >
+                </div>
+                <div class="entrar-items">
+                  <label for="tributo">Informações Tributárias:</label>
+                  <select name="tributo" id="tributo" required>
+                    <option value="contribuinte">Contribuinte ICMS</option>
+                    <option value="naocontribuinte">Não contribuinte ICMS
+                    </option>
+                    <option value="isento">Isento de inscrição estadual</option>
+                  </select>
+                </div>
+                <div class="entrar-items">
+                  <label for="email">Email da Empresa:</label>
+                    <input type="email" id="email" name="email" required >
+                </div>
+                <div class="entrar-items">
+                  <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="entrar-items">
+                  <label for="conf_senha">Confirmar Senha:</label>
+                    <input type="password" id="conf_senha" name="conf_senha" required>
+                </div>
+                <div class="entrar-items">
+                  <label for="celular">Celular da Empresa:</label>
+                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="celular" name="celular" required>
+                </div>
+                <div class="entrar-items">
+                    <label for="tel">Telefone da Empresa:</label>
+                    <input type="number" onKeyPress="if(this.value.length==10) return false;"  id="tel" name="tel" >
+                </div>
+                <div class="entrar-items">
+                    <label for="data_nasc">Data de Fundação:</label>
+                    <input type="date" id="data_nasc" name="data_nasc" required>
+                </div>
+                <input type="hidden" name="pagina_anterior" value="<?php echo $pagina_anterior ?>">
+                <div class="btn-cad justify"><input type="submit" onclick="return verificar()" value="Cadastrar"></div>
+            </div>
+
+            <div class="cadastro" id="form_cpf" style="display:block">
                 <div class="entrar-items">
                   <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" name="nome" required>

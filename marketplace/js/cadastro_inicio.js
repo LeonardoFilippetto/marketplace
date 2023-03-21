@@ -52,3 +52,19 @@ function testaCPF(strCPF) {
     if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
     return true;
 }
+
+function cadastroFisica(){
+    const formCpf = document.querySelector("#form_cpf");
+    const formCnpj = document.querySelector("#form_cnpj");
+
+    formCnpj.style.display="none";
+    formCpf.style.display="block";
+}
+
+function cadastroJuridica(){
+    const formCpf = document.querySelector("#form_cpf");
+    const formCnpj = document.querySelector("#form_cnpj");
+
+    formCpf.style.display="none";
+    formCnpj.style.display="block";
+}
