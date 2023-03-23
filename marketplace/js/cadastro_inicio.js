@@ -54,6 +54,7 @@ function testaCPF(strCPF) {
 }
 
 function cadastroFisica(){
+    
     const formCpf = document.querySelector("#form_cpf");
     const formCnpj = document.querySelector("#form_cnpj");
 
