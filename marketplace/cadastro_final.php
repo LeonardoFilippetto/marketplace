@@ -6,15 +6,25 @@ if(isset($_POST['pagina_anterior'])){
     $hidden_inputs = "<input type='hidden' name='pagina_anterior' value='".$pagina_anterior."'>";
 }
 
-if(isset($_POST['email'])){
-    echo $_POST['data_nasc'];
+if(isset($_POST['cad'])){
+    $cad=$_POST['cad'];
     session_start();
     if(!isset($_SESSION["senha"])){
         $options = ['cost' => 12,];
         $_SESSION["senha"]=password_hash($_POST['senha'],   PASSWORD_BCRYPT, $options);
     }
+    if($cad=="fis"){
+      $hidden_inputs .= "<input type='hidden' name='cad' value='".$cad."'>";
+      $hidden_inputs .= "<input type='hidden' name='cpf' value='".$_POST['cpf']."'>";
+    }else{
+      $hidden_inputs .= "<input type='hidden' name='cad' value='".$cad."'>";
+      $hidden_inputs .= "<input type='hidden' name='cnpj' value='".$_POST['cnpj']."'>";
+      $hidden_inputs .= "<input type='hidden' name='nome_fant' value='".$_POST['nome_fant'].  "'>";
+      $hidden_inputs .= "<input type='hidden' name='raz_soc' value='".$_POST  ['raz_soc']."'>";
+      $hidden_inputs .= "<input type='hidden' name='tributo' value='".$_POST['tributo']."'>";
+      $hidden_inputs .= "<input type='hidden' name='tel' value='".$_POST['tel']."'>";
+    }
     $hidden_inputs .= "<input type='hidden' name='nome' value='".$_POST['nome']."'>";
-    $hidden_inputs .= "<input type='hidden' name='cpf' value='".$_POST['cpf']."'>";
     $hidden_inputs .= "<input type='hidden' name='email' value='".$_POST['email']."'>";
     $hidden_inputs .= "<input type='hidden' name='celular' value='".$_POST['celular']."'>";
     $hidden_inputs .= "<input type='hidden' name='data_nasc' value='".$_POST['data_nasc']."'>";
