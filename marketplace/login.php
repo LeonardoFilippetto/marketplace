@@ -20,7 +20,7 @@ if(isset($_POST['email'])){
         $senha_bd=$row['senha'];
         $email_bd=$row['email'];
 
-        if(password_verify($senha_form, $senhabd)) {
+        if(password_verify($senha_form, $senha_bd)) {
             session_start();
             $_SESSION["email"] = $email_bd;
             if($pagina_anterior){
@@ -28,6 +28,8 @@ if(isset($_POST['email'])){
             }else{
                 header("Location:index.php");
             }
+        }else{
+            $mensagem="Email ou senha inválidos!";
         }
 
     }else{
