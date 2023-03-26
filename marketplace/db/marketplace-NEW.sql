@@ -1,15 +1,34 @@
-﻿# Host: localhost:3399  (Version 5.5.5-10.4.22-MariaDB)
-# Date: 2023-03-07 10:27:02
-# Generator: MySQL-Front 6.0  (Build 2.20)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Tempo de geração: 26-Mar-2023 às 15:56
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-#
-# Structure for table "anuncios"
-#
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-DROP TABLE IF EXISTS `anuncios`;
+--
+-- Banco de dados: `marketplace`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `anuncios`
+--
+
 CREATE TABLE `anuncios` (
-  `id_anuncio` int(11) NOT NULL AUTO_INCREMENT,
+  `id_anuncio` int(11) NOT NULL,
   `id_produto` int(11) DEFAULT NULL,
   `categoria_produto` varchar(45) DEFAULT NULL,
   `preco` decimal(9,2) DEFAULT NULL,
@@ -17,22 +36,17 @@ CREATE TABLE `anuncios` (
   `img_princ` varchar(50) DEFAULT NULL,
   `imgs_sec` text DEFAULT NULL,
   `descricao` text DEFAULT NULL,
-  `ativo` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id_anuncio`)
+  `ativo` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "anuncios"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `armazenamento`
+--
 
-#
-# Structure for table "armazenamento"
-#
-
-DROP TABLE IF EXISTS `armazenamento`;
 CREATE TABLE `armazenamento` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `fabricante` varchar(45) DEFAULT NULL,
@@ -40,84 +54,64 @@ CREATE TABLE `armazenamento` (
   `ean` varchar(13) DEFAULT NULL,
   `tipo` varchar(20) DEFAULT NULL,
   `fator_de_forma` varchar(20) DEFAULT NULL,
-  `tamanho` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `tamanho` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "armazenamento"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `avaliacoes`
+--
 
-#
-# Structure for table "avaliacoes"
-#
-
-DROP TABLE IF EXISTS `avaliacoes`;
 CREATE TABLE `avaliacoes` (
-  `id_avaliacao` int(11) NOT NULL AUTO_INCREMENT,
+  `id_avaliacao` int(11) NOT NULL,
   `id_usuarios` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `nota` int(11) DEFAULT NULL,
   `opiniao` text DEFAULT NULL,
-  `data` date DEFAULT NULL,
-  PRIMARY KEY (`id_avaliacao`)
+  `data` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "avaliacoes"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `comentarios`
+--
 
-#
-# Structure for table "comentarios"
-#
-
-DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
-  `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_comentario` int(11) NOT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_anunucio` int(11) DEFAULT NULL,
   `id_resposta` int(11) DEFAULT NULL,
   `mensagem` text DEFAULT NULL,
-  `data` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_comentario`)
+  `data` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "comentarios"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `coolers`
+--
 
-#
-# Structure for table "coolers"
-#
-
-DROP TABLE IF EXISTS `coolers`;
 CREATE TABLE `coolers` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ian` varchar(13) DEFAULT NULL,
   `fabricante` varchar(45) DEFAULT NULL,
   `modelo` varchar(100) DEFAULT NULL,
   `liquid_cooler` tinyint(4) DEFAULT NULL,
-  `rpm` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `rpm` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "coolers"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `fontes`
+--
 
-#
-# Structure for table "fontes"
-#
-
-DROP TABLE IF EXISTS `fontes`;
 CREATE TABLE `fontes` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ean` varchar(13) DEFAULT NULL,
@@ -125,22 +119,17 @@ CREATE TABLE `fontes` (
   `modelo` varchar(100) DEFAULT NULL,
   `selo` varchar(30) DEFAULT NULL,
   `potencia` int(11) DEFAULT NULL,
-  `fator_de_froma` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `fator_de_froma` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "fontes"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `gabinetes`
+--
 
-#
-# Structure for table "gabinetes"
-#
-
-DROP TABLE IF EXISTS `gabinetes`;
 CREATE TABLE `gabinetes` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ian` varchar(13) DEFAULT NULL,
@@ -149,22 +138,17 @@ CREATE TABLE `gabinetes` (
   `fator_de_forma` varchar(20) DEFAULT NULL,
   `altura` int(11) DEFAULT NULL,
   `conprimento` int(11) DEFAULT NULL,
-  `largura` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `largura` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "gabinetes"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `memoria_ram`
+--
 
-#
-# Structure for table "memoria_ram"
-#
-
-DROP TABLE IF EXISTS `memoria_ram`;
 CREATE TABLE `memoria_ram` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ean` varchar(13) DEFAULT NULL,
@@ -173,22 +157,17 @@ CREATE TABLE `memoria_ram` (
   `tamanho` int(11) DEFAULT NULL,
   `quantidade_pentes` int(11) DEFAULT NULL,
   `frequencia` int(11) DEFAULT NULL,
-  `tipo_de_memoria` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `tipo_de_memoria` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "memoria_ram"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `placas_de_video`
+--
 
-#
-# Structure for table "placas_de_video"
-#
-
-DROP TABLE IF EXISTS `placas_de_video`;
 CREATE TABLE `placas_de_video` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `Id_anuncio` int(11) DEFAULT NULL,
   `ean` varchar(13) DEFAULT NULL,
@@ -197,22 +176,17 @@ CREATE TABLE `placas_de_video` (
   `tamanho` int(11) DEFAULT NULL,
   `quantidade_pentes` int(11) DEFAULT NULL,
   `frequencia` int(11) DEFAULT NULL,
-  `tipo_memoria` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `tipo_memoria` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "placas_de_video"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `placas_mae`
+--
 
-#
-# Structure for table "placas_mae"
-#
-
-DROP TABLE IF EXISTS `placas_mae`;
 CREATE TABLE `placas_mae` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `Id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ean` varchar(13) DEFAULT NULL,
@@ -228,22 +202,17 @@ CREATE TABLE `placas_mae` (
   `slots_m2` int(11) DEFAULT NULL,
   `slots_sata` int(11) DEFAULT NULL,
   `tipo_memoria` varchar(20) DEFAULT NULL,
-  `fator_de_forma` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `fator_de_forma` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "placas_mae"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `processadores`
+--
 
-#
-# Structure for table "processadores"
-#
-
-DROP TABLE IF EXISTS `processadores`;
 CREATE TABLE `processadores` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produto` int(11) NOT NULL,
   `id_vendedor` int(11) DEFAULT NULL,
   `id_anuncio` int(11) DEFAULT NULL,
   `ean` varchar(13) DEFAULT NULL,
@@ -253,25 +222,20 @@ CREATE TABLE `processadores` (
   `serie` varchar(20) DEFAULT NULL,
   `nucelo` int(11) DEFAULT NULL,
   `frequencia` int(11) DEFAULT NULL,
-  `video_integrado` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
+  `video_integrado` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "processadores"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `usuarios`
+--
 
-#
-# Structure for table "usuarios"
-#
-
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
   `cpf` varchar(11) DEFAULT NULL,
   `cnpj` varchar(14) DEFAULT NULL,
-  `data_nasc` date DEFAULT current_timestamp(),
+  `data_nasc` date DEFAULT NULL,
   `celular` varchar(11) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
@@ -286,22 +250,17 @@ CREATE TABLE `usuarios` (
   `complemento` varchar(30) DEFAULT NULL,
   `bairro` varchar(50) DEFAULT NULL,
   `cidade` varchar(50) DEFAULT NULL,
-  `referencia` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id_usuario`)
+  `referencia` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "usuarios"
-#
+-- --------------------------------------------------------
 
+--
+-- Estrutura da tabela `vendas`
+--
 
-#
-# Structure for table "vendas"
-#
-
-DROP TABLE IF EXISTS `vendas`;
 CREATE TABLE `vendas` (
-  `id_vendas` int(11) NOT NULL AUTO_INCREMENT,
+  `id_vendas` int(11) NOT NULL,
   `id_comprador` int(11) DEFAULT NULL,
   `ids_anuncios` text DEFAULT NULL,
   `qunatidades` text DEFAULT NULL,
@@ -309,11 +268,175 @@ CREATE TABLE `vendas` (
   `data` timestamp NULL DEFAULT current_timestamp(),
   `transportadora` varchar(40) DEFAULT NULL,
   `valor_frete` decimal(9,2) DEFAULT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id_vendas`)
+  `status` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Data for table "vendas"
-#
+--
+-- Índices para tabelas despejadas
+--
 
+--
+-- Índices para tabela `anuncios`
+--
+ALTER TABLE `anuncios`
+  ADD PRIMARY KEY (`id_anuncio`);
+
+--
+-- Índices para tabela `armazenamento`
+--
+ALTER TABLE `armazenamento`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  ADD PRIMARY KEY (`id_avaliacao`);
+
+--
+-- Índices para tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`);
+
+--
+-- Índices para tabela `coolers`
+--
+ALTER TABLE `coolers`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `fontes`
+--
+ALTER TABLE `fontes`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `gabinetes`
+--
+ALTER TABLE `gabinetes`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `memoria_ram`
+--
+ALTER TABLE `memoria_ram`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `placas_de_video`
+--
+ALTER TABLE `placas_de_video`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `placas_mae`
+--
+ALTER TABLE `placas_mae`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `processadores`
+--
+ALTER TABLE `processadores`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Índices para tabela `vendas`
+--
+ALTER TABLE `vendas`
+  ADD PRIMARY KEY (`id_vendas`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `anuncios`
+--
+ALTER TABLE `anuncios`
+  MODIFY `id_anuncio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `armazenamento`
+--
+ALTER TABLE `armazenamento`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  MODIFY `id_avaliacao` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `coolers`
+--
+ALTER TABLE `coolers`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `fontes`
+--
+ALTER TABLE `fontes`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `gabinetes`
+--
+ALTER TABLE `gabinetes`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `memoria_ram`
+--
+ALTER TABLE `memoria_ram`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `placas_de_video`
+--
+ALTER TABLE `placas_de_video`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `placas_mae`
+--
+ALTER TABLE `placas_mae`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `processadores`
+--
+ALTER TABLE `processadores`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `vendas`
+--
+ALTER TABLE `vendas`
+  MODIFY `id_vendas` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

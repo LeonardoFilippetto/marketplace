@@ -1,4 +1,9 @@
 <?php
+require("conexao.php");
+session_start();
+if(isset($_POST["pagina_anterior"])){
+    $pag_ant=$_POST["pagina_anterior"];
+}
 if(isset($_POST['numero'])){
     $numero_form=$_POST['numero'];
     $complemento_form=$_POST['complemento'];
@@ -16,9 +21,11 @@ if(isset($_POST['numero'])){
     $senha = $_SESSION["senha"];
 
     if($_POST['cad']=="fis"){
-        $cpf=$_POST['cpf'];
+        $cpf_form=$_POST['cpf'];
 
-        $query = "INSERT INTO usuarios (cep, logradouro, data, numero, bairro, complemento, cidade, referencia, nome, cpf, email, senha, celular) VALUES ($cep_form, $logradouro_form, $data_form, $numero_form, $bairro_form, $complemento_form, $cidade_form, $referencia_form, $nome_form, $cpf_form, $email_form, $senha, $cel_form)";
+        $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cpf, email, senha, celular) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cpf_form', '$email_form', '$senha', '$cel_form')";
+
+        echo $query;
 
     }else{
         $cnpj_form=$_POST['cnpj'];
@@ -28,9 +35,17 @@ if(isset($_POST['numero'])){
         $tel_form=$_POST['tel'];
 
         //ALTERAR**
-        $query = "INSERT INTO usuarios (cep, logradouro, data, numero, bairro, complemento, cidade, referencia, nome, cnpj, , email, senha, celular, razao_social, tributo, nome_fantasia, telefone_empresa) VALUES ($cep_form, $logradouro_form, $data_form, $numero_form, $bairro_form, $complemento_form, $cidade_form, $referencia_form, $nome_form, $cnpj_form, $email_form, $senha, $cel_form, $raz_soc_form, $tributo_form, $nome_fant_form, $tel_form)";
+        $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cnpj, email, senha, celular, razao_social, tributo, nome_fantasia, telefone_empresa) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cnpj_form', '$email_form', '$senha', '$cel_form', '$raz_soc_form', '$tributo_form', '$nome_fant_form', '$tel_form')";
 
     }
-    //$result = mysqli_query($con, $query);
+    $result = mysqli_query($con, $query);
+    if($result){
+        echo'<script>alert("dados cadastrados com sucesso!");</script>';
+        if(isset($pag_ant)){
+            header("Location:$pag_ant");
+        }
+    }else{
+        echo'<script>alert("houve um erro!");</script>';
+    }
 }
 ?>

@@ -20,7 +20,7 @@ if(isset($_POST['cad'])){
       $hidden_inputs .= "<input type='hidden' name='cad' value='".$cad."'>";
       $hidden_inputs .= "<input type='hidden' name='cnpj' value='".$_POST['cnpj']."'>";
       $hidden_inputs .= "<input type='hidden' name='nome_fant' value='".$_POST['nome_fant'].  "'>";
-      $hidden_inputs .= "<input type='hidden' name='raz_soc' value='".$_POST  ['raz_soc']."'>";
+      $hidden_inputs .= "<input type='hidden' name='raz_soc' value='".$_POST['raz_soc']."'>";
       $hidden_inputs .= "<input type='hidden' name='tributo' value='".$_POST['tributo']."'>";
       $hidden_inputs .= "<input type='hidden' name='tel' value='".$_POST['tel']."'>";
     }
@@ -50,6 +50,7 @@ if(isset($_POST['cad'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se</title>
+    <script defer src="js/cadastro_final.js"></script>
     <style>
    /* Reset default browser styles */
 * {
@@ -158,35 +159,36 @@ input[type="submit"]:hover {
             <div class="cadastro">
                 <h1>Cadastro</h1>
                 <div class="entrar-items">
-                  <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" required>
+                  <label for="cep">CEP:*</label>
+                    <input type="number" onKeyPress="if(this.value.length==8) return false;" id="cep" name="cep" required>
                 </div>
                 <div class="entrar-items">
-                  <label for="logradouro">Logradouro:</label>
+                  <label for="logradouro">Logradouro:*</label>
                     <input type="text" id="l" name="logradouro" required >
                 </div>
                 <div class="entrar-items">
-                  <label for="numero">Numero:</label>
+                  <label for="numero">Numero:*</label>
                     <input type="number" id="numero" name="numero" required >
                 </div>
                 <div class="entrar-items">
-                  <label for="complemento">Complemento:</label>
+                  <label for="complemento">Complemento:*</label>
                     <input type="text" id="complemento" name="complemento" required>
                 </div>
                 <div class="entrar-items">
-                  <label for="bairro">Bairro:</label>
+                  <label for="bairro">Bairro:*</label>
                     <input type="text" id="bairro" name="bairro" required>
                 </div>
                 <div class="entrar-items">
-                  <label for="cidade">Cidade:</label>
+                  <label for="cidade">Cidade:*</label>
                     <input type="text" id="cidade" name="cidade" required>
                 </div>
                 <div class="entrar-items">
-                  <label for="referencia">Referência:</label>
-                    <input type="text" id="referencia" required>
+                  <label for="referencia">Referência:*</label>
+                    <input type="text" id="referencia" name="referencia" required>
                 </div>
+                <p style="font-size:12px; color:#a6a6a6;">(*) - Campos obrigatórios</p><br>
                 <?php echo $hidden_inputs; ?>
-                <div class="btn-cad justify"><input type="submit" onclick="return verificar" value="Cadastrar"></div>
+                <div class="btn-cad justify"><input type="submit" onclick="return verificarEnd()" value="Cadastrar"></div>
             </div>
         </div>
     </form>

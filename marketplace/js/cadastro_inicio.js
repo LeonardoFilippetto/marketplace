@@ -1,10 +1,10 @@
-function verificar(){
+function verificarFis(){
 
-    const nome = document.querySelector("#nome");
-    const cpf = document.querySelector("#cpf");
-    const senha = document.querySelector("#senha");
-    const confSenha = document.querySelector("#conf_senha");
-    const cel = document.querySelector("#celular");
+    const nome = document.querySelector("#fis_nome");
+    const cpf = document.querySelector("#fis_cpf");
+    const senha = document.querySelector("#fis_senha");
+    const confSenha = document.querySelector("#fis_conf_senha");
+    const cel = document.querySelector("#fis_celular");
 
     let ret = true;
 
@@ -22,6 +22,45 @@ function verificar(){
     }
     if(cel.value.length!=11){
         alert("Celular inválido!");
+        ret = false;
+    }
+
+    if(!ret){
+        return false;
+    }
+
+    return true;
+}
+
+function verificarJur(){
+
+    const nome = document.querySelector("#jur_nome");
+    const cnpj = document.querySelector("#jur_cnpj");
+    const senha = document.querySelector("#jur_senha");
+    const confSenha = document.querySelector("#jur_conf_senha");
+    const cel = document.querySelector("#jur_celular");
+    const tel = document.querySelector("#jur_tel");
+
+    let ret = true;
+
+    if(!nome.value.includes(" ")){
+        alert("Inserir nome completo no campo 'Nome do responsável:'!");
+        ret = false;
+    }
+    if(cnpj.value.length!=14||!testaCNPJ(cnpj.value)){
+        alert("CNPJ inválido!");
+        ret = false;
+    }
+    if(senha.value!=confSenha.value){
+        alert("Senhas fornecidas são diferentes!");
+        ret = false;
+    }
+    if(cel.value.length!=11){
+        alert("Celular inválido!");
+        ret = false;
+    }
+    if(tel.value.length!=10&&tel.value.length!=0){
+        alert("Telefone inválido!");
         ret = false;
     }
 
@@ -53,8 +92,56 @@ function testaCPF(strCPF) {
     return true;
 }
 
-function cadastroFisica(){
+function testaCNPJ(cnpj) {
+    if(cnpj == '') return false;
+ 
+    // Elimina CNPJs invalidos conhecidos
+    if (cnpj == "00000000000000" || 
+        cnpj == "11111111111111" || 
+        cnpj == "22222222222222" || 
+        cnpj == "33333333333333" || 
+        cnpj == "44444444444444" || 
+        cnpj == "55555555555555" || 
+        cnpj == "66666666666666" || 
+        cnpj == "77777777777777" || 
+        cnpj == "88888888888888" || 
+        cnpj == "99999999999999")
+        return false;
+         
+    // Valida DVs
+    tamanho = cnpj.length - 2
+    numeros = cnpj.substring(0,tamanho);
+    digitos = cnpj.substring(tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2)
+            pos = 9;
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado != digitos.charAt(0))
+        return false;
+         
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0,tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2)
+            pos = 9;
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado != digitos.charAt(1))
+          return false;
+           
+    return true;
     
+}
+
+function cadastroFisica(e){
+    e.preventDefault();
     const formCpf = document.querySelector("#form_cpf");
     const formCnpj = document.querySelector("#form_cnpj");
 
@@ -62,7 +149,8 @@ function cadastroFisica(){
     formCpf.style.display="block";
 }
 
-function cadastroJuridica(){
+function cadastroJuridica(e){
+    e.preventDefault();
     const formCpf = document.querySelector("#form_cpf");
     const formCnpj = document.querySelector("#form_cnpj");
 
