@@ -1,4 +1,6 @@
 <?php 
+session_start();
+session_destroy();
 $input_pag_ant="";
 if(isset($_POST['pagina_anterior'])){
     $pagina_anterior=$_POST['pagina_anterior'];
@@ -135,10 +137,10 @@ input[type="submit"]:hover {
             <h1>Cadastro</h1>
             <div class="tipo_usuario">
               <div class="radio">
-                <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" checked="checked"> <label for="cad_fis" style="margin:0; width:30%;">Pessoa Física</label>
+                <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" checked="checked"> <label for="cad_fis" style="margin:0; width:30%; padding:0.2rem;">Pessoa Física</label>
               </div><br>
               <div class="radio">
-                <input type="radio" id="cad_jur" name="cad" value="jur" onclick="cadastroJuridica(event)" /> <label for="cad_jur" style="margin:0; width:30%;">Pessoa Jurídica</label>
+                <input type="radio" id="cad_jur" name="cad" value="jur" onclick="cadastroJuridica(event)" /> <label for="cad_jur" style="margin:0; width:30%; padding:0.2rem;">Pessoa Jurídica</label>
               </div><br><br>
             </div>
 
@@ -183,10 +185,10 @@ input[type="submit"]:hover {
             <h1>Cadastro</h1>
             <div class="tipo_usuario">
               <div class="radio">
-                <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" > <label for="cad_fis" style="margin:0; width:30%;">Pessoa Física</label>
+                <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" > <label for="cad_fis" style="margin:0; width:30%; padding:0.2rem;">Pessoa Física</label>
               </div><br>
               <div class="radio">
-                <input type="radio" id="cad_jur" name="cad" value="jur" onclick="cadastroJuridica(event)" checked="checked"> <label for="cad_jur" style="margin:0; width:30%;">Pessoa Jurídica</label>
+                <input type="radio" id="cad_jur" name="cad" value="jur" onclick="cadastroJuridica(event)" checked="checked"> <label for="cad_jur" style="margin:0; width:30%; padding:0.2rem;">Pessoa Jurídica</label>
               </div><br><br>
             </div>
             <div class="cadastro">

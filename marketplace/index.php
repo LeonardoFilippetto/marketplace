@@ -12,9 +12,7 @@
         <span>Header<span>
     </header>
 <?php
-
-$con = mysqli_connect('localhost','root','','marketplace');
-
+require("conexao.php");
 $query = "SELECT * FROM anuncios";
 $result = mysqli_query($con, $query);
 echo "<div id='grid'>";

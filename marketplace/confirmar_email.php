@@ -1,4 +1,9 @@
 <?php
+/*
+
+*
+
+*/
 require("conexao.php");
 session_start();
 if(isset($_POST["pagina_anterior"])){
@@ -32,10 +37,14 @@ if(isset($_POST['numero'])){
         $nome_fant_form=$_POST['nome_fant'];
         $raz_soc_form=$_POST['raz_soc'];
         $tributo_form=$_POST['tributo'];
-        $tel_form=$_POST['tel'];
+        if(isset($_POST['tel'])){
+            $tel_form=$_POST['tel'];
+            $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cnpj, email, senha, celular, razao_social, tributo, nome_fantasia, telefone_empresa) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cnpj_form', '$email_form', '$senha', '$cel_form', '$raz_soc_form', '$tributo_form', '$nome_fant_form', '$tel_form')";
+        }else{
+            $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cnpj, email, senha, celular, razao_social, tributo, nome_fantasia) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cnpj_form', '$email_form', '$senha', '$cel_form', '$raz_soc_form', '$tributo_form', '$nome_fant_form')";
+        }
 
-        //ALTERAR**
-        $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cnpj, email, senha, celular, razao_social, tributo, nome_fantasia, telefone_empresa) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cnpj_form', '$email_form', '$senha', '$cel_form', '$raz_soc_form', '$tributo_form', '$nome_fant_form', '$tel_form')";
+       
 
     }
     $result = mysqli_query($con, $query);

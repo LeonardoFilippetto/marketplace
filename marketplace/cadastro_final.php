@@ -22,7 +22,9 @@ if(isset($_POST['cad'])){
       $hidden_inputs .= "<input type='hidden' name='nome_fant' value='".$_POST['nome_fant'].  "'>";
       $hidden_inputs .= "<input type='hidden' name='raz_soc' value='".$_POST['raz_soc']."'>";
       $hidden_inputs .= "<input type='hidden' name='tributo' value='".$_POST['tributo']."'>";
-      $hidden_inputs .= "<input type='hidden' name='tel' value='".$_POST['tel']."'>";
+      if(isset($_POST['tel'])){
+        $hidden_inputs .= "<input type='hidden' name='tel' value='".$_POST['tel']."'>";
+      }
     }
     $hidden_inputs .= "<input type='hidden' name='nome' value='".$_POST['nome']."'>";
     $hidden_inputs .= "<input type='hidden' name='email' value='".$_POST['email']."'>";
