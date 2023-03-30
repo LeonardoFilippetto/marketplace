@@ -28,7 +28,11 @@ if(isset($_POST['cad'])){
     }
     $hidden_inputs .= "<input type='hidden' name='nome' value='".$_POST['nome']."'>";
     $hidden_inputs .= "<input type='hidden' name='email' value='".$_POST['email']."'>";
-    $hidden_inputs .= "<input type='hidden' name='celular' value='".$_POST['celular']."'>";
+    $celular=str_replace("-","", $_POST['celular']);
+    $celular=str_replace(" ","", $_POST['celular']);
+    $celular=str_replace("(","", $_POST['celular']);
+    $celular_limpo=str_replace(")","", $_POST['celular']);
+    $hidden_inputs .= "<input type='hidden' name='celular' value='".$celular_limpo."'>";
     $hidden_inputs .= "<input type='hidden' name='data_nasc' value='".$_POST['data_nasc']."'>";
 }
 /*if(isset($_POST['numero'])){

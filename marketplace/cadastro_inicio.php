@@ -90,6 +90,7 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 input[type="date"],
+input[type="tel"],
 select {
   width: 100%;
   padding: 10px;
@@ -147,27 +148,27 @@ input[type="submit"]:hover {
             <div class="cadastro">
                 <div class="entrar-items">
                   <label for="fis_nome">Nome Completo:*</label>
-                    <input type="text" id="fis_nome" name="nome" required>
+                    <input type="text" id="fis_nome" name="nome" placeholder="João Santos" required>
                 </div>
                 <div class="entrar-items">
                   <label for="fis_cpf">CPF:*</label>
-                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="fis_cpf" name="cpf" required >
+                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="fis_cpf" name="cpf" placeholder="12345678901" required >
                 </div>
                 <div class="entrar-items">
                   <label for="fis_email">Email:*</label>
-                    <input type="email" id="fis_email" name="email" required >
+                    <input type="email" id="fis_email" name="email" placeholder="email@email.com" required >
                 </div>
                 <div class="entrar-items">
                   <label for="fis_senha">Senha:*</label>
-                    <input type="password" id="fis_senha" name="senha" required>
+                    <input type="password" id="fis_senha" name="senha" placeholder="*********" required>
                 </div>
                 <div class="entrar-items">
                   <label for="fis_conf_senha">Confirmar Senha:*</label>
-                    <input type="password" id="fis_conf_senha" name="conf_senha" required>
+                    <input type="password" id="fis_conf_senha" name="conf_senha" placeholder="*********" required>
                 </div>
                 <div class="entrar-items">
                   <label for="fis_celular">Celular:*</label>
-                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="fis_celular" name="celular" required>
+                    <input type="tel" oninput="handlePhone(event)" id="fis_celular" maxlength="15" name="celular" placeholder="(19) 99999-9999" required>
                 </div>
                 <div class="entrar-items">
                     <label for="fis_data_nasc">Data de nascimento:*</label>
@@ -194,19 +195,19 @@ input[type="submit"]:hover {
             <div class="cadastro">
                 <div class="entrar-items">
                   <label for="jur_nome">Nome Completo do Responsável:*</label>
-                    <input type="text" id="jur_nome" name="nome" required>
+                    <input type="text" id="jur_nome" name="nome" placeholder="João Santos" required>
                 </div>
                 <div class="entrar-items">
                   <label for="jur_cnpj">CNPJ:</label>
-                    <input type="number" onKeyPress="if(this.value.length==14) return false;" id="jur_cnpj" name="cnpj" required >
+                    <input type="number" onKeyPress="if(this.value.length==14) return false;" id="jur_cnpj" name="cnpj" placeholder="12.345.678/0001-90" required >
                 </div>
                 <div class="entrar-items">
                   <label for="jur_nome_fant">Nome Fantasia:*</label>
-                    <input type="text" id="jur_nome_fant" name="nome_fant" required >
+                    <input type="text" id="jur_nome_fant" name="nome_fant" placeholder="Samsung" required>
                 </div>
                 <div class="entrar-items">
                   <label for="jur_raz_soc">Razão Social:*</label>
-                    <input type="text" id="jur_raz_soc" name="raz_soc" required >
+                    <input type="text" id="jur_raz_soc" name="raz_soc" placeholder="Samsung Electronics Co., Ltd." required >
                 </div>
                 <div class="entrar-items">
                   <label for="jur_tributo">Informações Tributárias:*</label>
@@ -219,23 +220,23 @@ input[type="submit"]:hover {
                 </div>
                 <div class="entrar-items">
                   <label for="jur_email">Email da Empresa:*</label>
-                    <input type="email" id="jur_email" name="email" required>
+                    <input type="email" id="jur_email" name="email" placeholder="email@email.com" required>
                 </div>
                 <div class="entrar-items">
                   <label for="jur_senha">Senha:*</label>
-                    <input type="password" id="jur_senha" name="senha" required>
+                    <input type="password" id="jur_senha" name="senha" placeholder="*********" required>
                 </div>
                 <div class="entrar-items">
                   <label for="jur_conf_senha">Confirmar Senha:*</label>
-                    <input type="password" id="jur_conf_senha" name="conf_senha" required>
+                    <input type="password" id="jur_conf_senha" name="conf_senha" placeholder="*********" required>
                 </div>
                 <div class="entrar-items">
                   <label for="jur_celular">Celular da Empresa:*</label>
-                    <input type="number" onKeyPress="if(this.value.length==11) return false;" id="jur_celular" name="celular" required>
+                    <input type="tel" oninput="handlePhone(event)" id="jur_celular" maxlength="15" name="celular" placeholder="(19) 99999-9999" required>
                 </div>
                 <div class="entrar-items">
                     <label for="jur_tel">Telefone da Empresa:</label>
-                    <input type="number" onKeyPress="if(this.value.length==10) return false;"  id="jur_tel" name="tel" >
+                    <input type="number" onKeyPress="if(this.value.length==10) return false;"  id="jur_tel" placeholder="(19) 9999-9999" name="tel" >
                 </div>
                 <div class="entrar-items">
                     <label for="jur_data_nasc">Data de Fundação:*</label>
