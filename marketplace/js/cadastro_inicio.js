@@ -5,6 +5,7 @@ function verificarFis(){
     const senha = document.querySelector("#fis_senha");
     const confSenha = document.querySelector("#fis_conf_senha");
     const cel = document.querySelector("#fis_celular");
+    const email = document.querySelector("#fis_email");
 
     let ret = true;
 
@@ -20,14 +21,20 @@ function verificarFis(){
         alert("Senhas fornecidas são diferentes!");
         ret = false;
     }
-    if(cel.value.length!=11){
+    if(cel.value.length!=15){
         alert("Celular inválido!");
+        ret = false;
+    }
+
+    if(verificarEmailBd(email.value)){
+        alert("Email já cadastrado!")
         ret = false;
     }
 
     if(!ret){
         return false;
     }
+
 
     return true;
 }
@@ -40,6 +47,7 @@ function verificarJur(){
     const confSenha = document.querySelector("#jur_conf_senha");
     const cel = document.querySelector("#jur_celular");
     const tel = document.querySelector("#jur_tel");
+    const email = document.querySelector("#jur_email");
 
     let ret = true;
 
@@ -55,12 +63,17 @@ function verificarJur(){
         alert("Senhas fornecidas são diferentes!");
         ret = false;
     }
-    if(cel.value.length!=11){
+    if(cel.value.length!=15){
         alert("Celular inválido!");
         ret = false;
     }
     if(tel.value.length!=10&&tel.value.length!=0){
         alert("Telefone inválido!");
+        ret = false;
+    }
+    
+    if(verificarEmailBd(email.value)){
+        alert("Email já cadastrado!")
         ret = false;
     }
 
@@ -171,3 +184,22 @@ const handlePhone = (event) => {
     return value
   }
   
+
+function verificarEmailBd(email){
+    let resposta;
+    let httpRequest;
+    httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        resposta = this.responseText;
+        console.log(`resposta: ${resposta}`);
+        if(resposta==email){
+            console.log("correspondência!!!!");
+            return true;
+        }
+        return false;
+      }
+    };
+    httpRequest.open("GET", "ajax_verificar_email_bd.php?email="+email, true);
+    httpRequest.send();
+}
