@@ -75,6 +75,8 @@ function verificarJur(){
     if(verificarEmailBd(email.value)){
         alert("Email já cadastrado!")
         ret = false;
+    }else{
+        alert("Email válido!");
     }
 
     if(!ret){
@@ -192,14 +194,19 @@ function verificarEmailBd(email){
     httpRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         resposta = this.responseText;
-        console.log(`resposta: ${resposta}`);
+        console.log(`email resposta: ${resposta}`);
         if(resposta==email){
             console.log("correspondência!!!!");
+            console.log("return true!");
             return true;
         }
+        console.log("return false!")
         return false;
       }
     };
-    httpRequest.open("GET", "ajax_verificar_email_bd.php?email="+email, true);
+    console.log(`email enviado: ${email}`);
+    let url = "ajax_verificar_email_bd.php?email="+email;
+    console.log(`URL: ${url}`);
+    httpRequest.open("GET", url, true);
     httpRequest.send();
 }
