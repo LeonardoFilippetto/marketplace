@@ -66,7 +66,7 @@ document.getElementById("submit_fis").onclick=async (e)=>{
         email.style.border="1px solid #ff0000";
         ret = false;
     }else if(await verificarEmailBd(email.value)){
-        document.querySelector("#fis_mens_nome").innerHTML="Email já cadastrado!";
+        document.querySelector("#fis_mens_email").innerHTML="Email já cadastrado!";
         email.style.border="1px solid #ff0000";
         ret = false;
         console.log(ret);
