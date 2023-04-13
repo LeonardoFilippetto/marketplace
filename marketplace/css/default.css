@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
@@ -9,29 +9,29 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #fafafa;
+    background-color: #5f17ea;
     min-height: 100vh;
 }
 
 header{
-    height: 8rem;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.5rem;
     background-color: #2b2b2b;
     color: #fff;
+    
 }
 
-header span{
-    font-size: 4rem;
-    margin-left: auto;
+header #logo{
+    font-size: 3rem;
+   
 }
 
 footer{
-    height: 12rem;
+    height: 5rem;
     width:100%;
-    font-size: 4rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;

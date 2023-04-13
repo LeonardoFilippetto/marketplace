@@ -16,7 +16,7 @@ if(isset($_POST['pagina_anterior'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastre-se</title>
+    <title>Cadastre-se  </title>
     <script defer src="js/cadastro_inicio.js"></script>
     <style>
    /* Reset default browser styles */
@@ -24,22 +24,26 @@ if(isset($_POST['pagina_anterior'])){
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+  color: #fff;
 }
 
 /* Body styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: arial, sans-serif;
   font-size: 16px;
-  background-color: #f1f1f1;
+  background-color: #222;
 }
 
 /* Top bar styles */
 #topo {
-  background-color: #333;
+  background-color: #5f17ea;
   color: #fff;
   display: flex;
   align-items: center;
   padding: 10px;
+  border-bottom: solid 5px #0123;
+  height: 5rem;
 }
 
 #topo h1 {
@@ -51,13 +55,24 @@ body {
   text-decoration: none;
 }
 
+.logo-stockpc{
+  align-items: center;
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-top: -25px;
+  position:absolute;
+}
+
 /* Form styles */
 form {
-  background-color: #fff;
+  color: #fff;
+  background-color:#434343;
+  box-shadow: 0px 0px 10px #222;
   padding: 20px;
   max-width: 500px;
   margin: 20px auto;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.8rem;
+
 }
 
 form h1 {
@@ -98,6 +113,7 @@ select {
   border-radius: 3px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   font-size: 16px;
+  background-color: #333;
 }
 
 input::-webkit-outer-spin-button,
@@ -112,7 +128,7 @@ input[type="number"]{
 
 input[type="submit"] {
   width: 100%;
-  background-color: #333;
+  background-color: #222;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -130,17 +146,36 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #555;
 }
+
+footer{
+  height: 5rem;
+  width: 100%;
+  background-color: #5f17ea;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 0.5rem ;
+  color:#fff;
+  margin-bottom: 0;
+  display: block;
+  border-top: solid 5px #0123;
+}
+
+footer p{
+  padding: 1.8rem;
+}
+
     </style>
 </head>
 <body>
     <div id="topo">
         <ul class="back-list">
-            <li><a href="entrar.php"><h1>‹ Voltar</h1></a></li>
+            <li><a href="login.php"><h1>Voltar</h1></a></li>
+            <img src="img/stockpc_escrito.png" alt="" class="logo-stockpc">
         </ul>
     </div>
     <form method="POST" action="cadastro_final.php" id="form_cpf" style="display:block">
         <div class="cadastre-se">
-            <h1>Cadastro</h1>
+            <h1>Informações pessoais</h1>
             <div class="tipo_usuario">
               <div class="radio">
                 <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" checked="checked"> <label for="cad_fis" style="margin:0; width:30%; padding:0.2rem;">Pessoa Física</label>
@@ -195,7 +230,7 @@ input[type="submit"]:hover {
 
     <form method="POST" action="cadastro_final.php" id="form_cnpj" style="display:none">
         <div class="cadastre-se">
-            <h1>Cadastro</h1>
+            <h1>Informações institucionais</h1>
             <div class="tipo_usuario">
               <div class="radio">
                 <input type="radio" id="cad_fis" name="cad" value="fis" onclick="cadastroFisica(event)" > <label for="cad_fis" style="margin:0; width:30%; padding:0.2rem;">Pessoa Física</label>
@@ -272,5 +307,8 @@ input[type="submit"]:hover {
         </div>
     </form>
 </body>
+    <footer>
+        <strong><p>Copyright © 2023 StockPC Inc. Todos os direitos reservados.</p></strong>
+    </footer>
 </html>
     

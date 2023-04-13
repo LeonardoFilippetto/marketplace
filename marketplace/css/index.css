@@ -15,7 +15,7 @@
     align-items: center;
     transition: box-shadow 200ms ease 0s;
     box-shadow: #28293d14 0px 0px 1px, #60617029 0px 0.5px 2px;
-    background-color: #fff;
+    background-color: #320e80;
 }
 
 .img_anunc{
@@ -29,6 +29,7 @@
 .img_anunc img{
     max-width: 100%;
     max-height: 100%;
+    
 }
 
 

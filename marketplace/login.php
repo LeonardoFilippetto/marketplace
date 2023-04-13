@@ -49,23 +49,79 @@ if(isset($_POST['email'])){
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/form.css">
 </head>
+<style>
+        *{
+            color: #fff;
+        }
+        header{
+            background-color: #5f17ea;
+            border-bottom: solid 5px #0123;
+        }
+        footer{
+            background-color: #5f17ea;
+            border-top: solid 5px #0123;
+        }
+        .logo-stockpc{
+           max-width: 300px;
+           margin-top: -10px;
+        }
+        body{
+            background-color: #222;
+        }
+        #form_container{
+            backdrop-filter: blur(0px);
+            color: #fff;
+            background-color:#434343;
+            box-shadow: 0px 0px 10px #222;
+            border: none;
+        
+        }
+        #botao{
+            color: #fff;
+            background-color: #222;
+        }
+        form input{
+            border: solid 2px #434343;
+            background-color: #333;
+        }
+        #cadastro{
+            background-color: #333;
+            height: 40px;
+            width: 350px ;
+            text-decoration: none;
+        }
+        #cadastro a{
+            color: #111;
+        }
+        .entrar{
+            font-size: 1.4em;
+        }
+
+</style>
 <body>
     <header>
-        <span>Header</span>
+        <div id="logo"><img src="img/Stockpc_escrito.png" alt="StockPC Logo" class="logo-stockpc"></div>
     </header>
+    
 
     <div id="form_container">
         <form action="" method="post">
-            <h1>Login</h1>
+            <p class="entrar">Entrar na StockPC</p>
             <input type="email" name="email" required placeholder="Email"><br>
             <input type="password" name="senha" required placeholder="Senha"><br>
             <span class="mensagem"><?php echo $mensagem; ?></span><br>
-            <button>Entrar</button>
+            <button id="botao">Entrar</button>
+
+            <div id="cadastro">
+                <p><b>Novo na StockPC? <a href="cadastro_inicio.php">Crie uma nova conta.</a></b></p>
+            </div>
         </form>
+        
+      
     </div>
 
     <footer>
-        Footer
+        <strong>Copyright © 2023 StockPC Inc. Todos os direitos reservados.</strong>
     </footer>
 </body>
 </html>
