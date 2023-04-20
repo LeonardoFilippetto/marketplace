@@ -16,7 +16,7 @@ if(isset($_POST['pagina_anterior'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastre-se  </title>
+    <title>Dados do vendedor</title>
     <script defer src="js/cadastro_inicio.js"></script>
     <style>
    /* Reset default browser styles */
@@ -302,7 +302,7 @@ footer p{
                 </div>
                 <p style="font-size:10px; color:#a6a6a6;" name="camp_obr">(*) - Campos obrigatórios</p><br>
                 <?php echo $input_pag_ant ?>
-                <div class="btn-cad justify"><input type="submit" id="submit_jur" value="Cadastrar"></div>
+                <div class="btn-cad justify"><input type="submit" id="submit_jur" value="Prosseguir"></div>
             </div> 
         </div>
     </form>
