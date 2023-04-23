@@ -100,7 +100,7 @@ if(isset($_POST['email'])){
 </style>
 <body>
     <header>
-        <div id="logo"><img src="img/Stockpc_escrito.png" alt="StockPC Logo" class="logo-stockpc"></div>
+        <div id="logo"><img src="img/stockpc/Stockpc_escrito.png" alt="StockPC Logo" class="logo-stockpc"></div>
     </header>
     
 

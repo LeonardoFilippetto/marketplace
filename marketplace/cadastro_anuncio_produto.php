@@ -1,16 +1,33 @@
 <?php
-$hidden_inputs = "";
 require("req_tipos_produtos.php");
-$form_produto = $form_placa_mae;
+
 if(isset($_POST['titulo_anuncio'])){
-    $condicao=$_POST['cond'];
-    if($condicao=="usado"){
-      $hidden_inputs .= "<input type='hidden' name='tempo_uso' value='".$_POST['tempo_uso']."'>";
+    session_start();
+    $_SESSION['post']['anuncio']=$_POST;
+    if($_POST['tipo_produto']=='placa_mae'){
+        $form_produto = $form_placa_mae;
     }
-    $hidden_inputs .= "<input type='hidden' name='cond' value='".$condicao."'>";
-    $hidden_inputs .= "<input type='hidden' name='preco_anunc' value='".$_POST['preco_anunc']."'>";
-    $hidden_inputs .= "<input type='hidden' name='tipo_produto' value='".$_POST['tipo_produto'].  "'>";
-    $hidden_inputs .= "<input type='hidden' name='titulo_anuncio' value='".$_POST['titulo_anuncio']."'>";
+    elseif($_POST['tipo_produto']=='processador'){
+        $form_produto = $form_processador;
+    }
+    elseif($_POST['tipo_produto']=='ram'){
+        $form_produto = $form_ram;
+    }
+    elseif($_POST['tipo_produto']=='placa_video'){
+        $form_produto = $form_placa_video;
+    }
+    elseif($_POST['tipo_produto']=='armazenamento'){
+        $form_produto = $form_armazenamento;
+    }
+    elseif($_POST['tipo_produto']=='gabinete'){
+        $form_produto = $form_gabinete;
+    }
+    elseif($_POST['tipo_produto']=='fonte'){
+        $form_produto = $form_fonte;
+    }
+    elseif($_POST['tipo_produto']=='cooler'){
+        $form_produto = $form_cooler;
+    }
     //$celular=str_replace("-","", $_POST['celular']);
 }
 /*if(isset($_POST['numero'])){
@@ -119,6 +136,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="file"],
 input[type="number"],
 select {
   width: 100%;
@@ -179,21 +197,19 @@ footer p{
     <div id="topo">
         <ul class="back-list">
             <li><a href="login.php"><h1>Voltar</h1></a></li>
-            <img src="img/stockpc_escrito.png" alt="" class="logo-stockpc">
+            <img src="img/stockpc/stockpc_escrito.png" alt="" class="logo-stockpc">
         </ul>
     </div>
-    <form method="POST" action="confirmar_email.php">
+    <form method="POST" action="cadastro_anuncio_info_adic.php">
         <div class="cadastre-se">
-            <div class="cadastro">
-                <h1>Dados do Produto</h1>
                 <div class="entrar-items">
                   <label for="ean">EAN (código de barras):*</label>
                     <input type="number" onKeyPress="if(this.value.length==13) return false;" placeholder="1234567891234" id="ean" name="ean" required>
+                    <p id="mens_ean" class="mens"></p>
                 </div>
                 <?php echo $form_produto; ?>
                 <p style="font-size:12px; color:#a6a6a6;">(*) - Campos obrigatórios</p><br>
-                <?php echo $hidden_inputs; ?>
-                <div class="btn-cad justify"><input type="submit" onclick="return verificarEnd()" value="Cadastrar"></div>
+                <div class="btn-cad justify"><input type="submit" value="Prosseguir"></div>
             </div>
         </div>
     </form>

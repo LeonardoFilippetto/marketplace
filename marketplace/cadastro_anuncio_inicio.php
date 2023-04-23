@@ -1,15 +1,7 @@
-<?php 
-session_start();
-session_destroy();
-$input_pag_ant="";
-if(isset($_POST['pagina_anterior'])){
-    $pagina_anterior=$_POST['pagina_anterior'];
-    $input_pag_ant='<input type="hidden" name="pagina_anterior" value="'.$pagina_anterior.'">';
-}
-
+<?php
+unset($_SESSION['post']);
 ?>
-
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <link rel="stylesheet" type="text/css" href="css/cadastro.css">
@@ -170,17 +162,17 @@ footer p{
     <div id="topo">
         <ul class="back-list">
             <li><a href="login.php"><h1>Voltar</h1></a></li>
-            <img src="img/stockpc_escrito.png" alt="" class="logo-stockpc">
+            <img src="img/stockpc/stockpc_escrito.png" alt="" class="logo-stockpc">
         </ul>
     </div>
-    <form method="POST" action="cadastro_anuncio_final.php" id="form_cad">
+    <form method="POST" action="cadastro_anuncio_produto.php" id="form_cad">
         <div class="cadastre-se">
             <h1>Informações do Anúncio</h1>
 
             <div class="cadastro">
                 <div class="entrar-items">
                     <label for="titulo_anuncio">Título do anúncio:*</label>
-                    <input type="text" id="titulo_anuncio" name="titulo_anuncio" placeholder="Placa de vídeo NVIDIA RTX3090" required>
+                    <input type="text" id="titulo_anuncio" name="titulo_anuncio" placeholder="Placa de vídeo NVIDIA RTX 3090" required>
                     <p id="mens_titulo_anuncio" class="mens"></p>
                 </div>
                 <div class="entrar-items">
@@ -199,8 +191,7 @@ footer p{
                       <option value="armazenamento">Armazenamento</option>
                       <option value="gabinete">Gabinete</option>
                       <option value="fonte">Fonte de alimentação</option>
-                      <option value="cooler">Cooler</option>
-                      <option value="fan">Fan</option>
+                      <option value="cooler">Cooler/FAN</option>
                     </select>
                     <p id="mens_tipo_produto" class="mens"></p>
                 </div>
@@ -239,9 +230,13 @@ footer p{
                     </select>
                     <p id="mens_tempo_uso" class="mens"></p>
                 </div>
+                <div class="entrar-items">
+                    <label for="estoque">Unidades do produto em estoque:*</label>
+                    <input type="number" id="estoque" name="estoque" placeholder="20" required >
+                    <p id="mens_estoque" class="mens"></p>
+                </div>
                 <p style="font-size:10px; color:#a6a6a6;" name="camp_obr">(*) - Campos obrigatórios</p><br>
-                <?php echo $input_pag_ant ?>
-                <div class="btn-cad justify"><input type="submit" id="submit_fis" value="Prosseguir"></div>
+                <div class="btn-cad justify"><input type="submit" value="Prosseguir"></div>
             </div>
         </div>
     </form>

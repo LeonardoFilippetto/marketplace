@@ -190,7 +190,7 @@ footer p{
     <div id="topo">
         <ul class="back-list">
             <li><a href="login.php"><h1>Voltar</h1></a></li>
-            <img src="img/stockpc_escrito.png" alt="" class="logo-stockpc">
+            <img src="img/stockpc/stockpc_escrito.png" alt="" class="logo-stockpc">
         </ul>
     </div>
     <form method="POST" action="confirmar_email.php">

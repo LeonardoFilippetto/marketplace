@@ -19,10 +19,10 @@ echo "<div id='grid'>";
 while ($row = mysqli_fetch_array($result)) {
     $id_anunc=($row['id_anuncio']);
     $id_vend=($row['id_vendedor']);
-    $nome_prod=($row['nome_prod']);
-    $tipo=($row['tipo_prod']);
+    $nome_prod=($row['titulo_anuncio']);
+    //$tipo=($row['tipo_prod']);
     $preco=($row['preco']);
-    $img_princ=($row['imagem_princ']);
+    $img_princ=($row['img_princ']);
     /*echo $id_anunc."<br>";
     echo $id_vend."<br>";
     echo $nome_prod."<br>";
