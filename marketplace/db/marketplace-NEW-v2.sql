@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 12-Mar-2023 às 12:38
+-- Tempo de geração: 23-Abr-2023 às 16:50
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.4
 
@@ -30,13 +30,32 @@ SET time_zone = "+00:00";
 CREATE TABLE `anuncios` (
   `id_anuncio` int(11) NOT NULL,
   `id_produto` int(11) DEFAULT NULL,
+  `id_vendedor` int(11) DEFAULT NULL,
+  `titulo_anuncio` varchar(150) DEFAULT NULL,
   `categoria_produto` varchar(45) DEFAULT NULL,
   `preco` decimal(9,2) DEFAULT NULL,
   `estoque` int(11) DEFAULT NULL,
-  `img_princ` varchar(50) DEFAULT NULL,
+  `img_princ` text DEFAULT NULL,
   `imgs_sec` text DEFAULT NULL,
-  `descriçao` text DEFAULT NULL
+  `descricao` text DEFAULT NULL,
+  `informacoes_adicionais` text DEFAULT NULL,
+  `ativo` tinyint(1) NOT NULL DEFAULT 1,
+  `vendas_registradas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `anuncios`
+--
+
+INSERT INTO `anuncios` (`id_anuncio`, `id_produto`, `id_vendedor`, `titulo_anuncio`, `categoria_produto`, `preco`, `estoque`, `img_princ`, `imgs_sec`, `descricao`, `informacoes_adicionais`, `ativo`, `vendas_registradas`) VALUES
+(1, 1, 1, 'Placa de vídeo Nvidia RTX 3090', 'placa_video', 8300.00, 10, '1682258092BQSol7cRWDzZrtHmtMV9VXw3.jpeg', '1682258092BQSol7cRWDzZrtHmtMV9VXw3_0.jpeg,1682258092BQSol7cRWDzZrtHmtMV9VXw3_1.jpeg,1682258092BQSol7cRWDzZrtHmtMV9VXw3_2.jpeg', 'descrição', 'informações adicionais', 1, NULL),
+(2, 3, 1, 'Placa-mãe ASUS ROG strix Z490-A gaming', 'placa_mae', 2300.00, 30, '1682259243l4k2OlEgLuTBTRDqU41kKgAe.png', '1682259243l4k2OlEgLuTBTRDqU41kKgAe_0.png', 'descr', 'info adic', 1, NULL),
+(3, 4, 1, 'Processador Intel Core i7-10700K', 'processador', 1800.00, 15, '16822595237pekiQHIg6lxvt74hWVR2oQ1.jpeg', '16822595237pekiQHIg6lxvt74hWVR2oQ1_0.jpeg', 'descr', 'info adic', 1, NULL),
+(4, 5, 1, 'Memória RAM HyperX Fury 16GB DDR4 3666MHz', 'ram', 250.00, 50, '1682259891m0zTD6rjjjT5SCATInv3Xq2y.jpeg', '1682259891m0zTD6rjjjT5SCATInv3Xq2y_0.jpeg', 'descr', 'info', 1, NULL),
+(5, 6, 1, 'HD Seagate Barracuda 1TB', 'armazenamento', 240.00, 5, '1682260367yPFu5lVmNSzOSpg14Prn03m5.jpeg', '1682260367yPFu5lVmNSzOSpg14Prn03m5_0.jpeg', 'descr', 'inf', 1, NULL),
+(6, 7, 1, 'Gabinete TGT Erion Mid Tower', 'gabinete', 200.00, 6, '1682260579nfDM5wuDvfIoUQlRO73ScfEm.jpeg', '1682260579nfDM5wuDvfIoUQlRO73ScfEm_0.jpeg', 'descr', 'aaaa', 1, NULL),
+(7, 8, 1, 'Fonte de Alimentação Corsair 550CV 550W', 'fonte', 300.00, 9, '1682260751HB9pbPuoIBSatneomBMTWMGE.jpeg', '1682260751HB9pbPuoIBSatneomBMTWMGE_0.jpeg', 'ddd', 'eee', 1, NULL),
+(8, 9, 1, 'Liquid Cooler DeepCool LE520', 'cooler', 500.00, 3, '1682261045q7CYGccUdtQWYejNMT8z6SMy.jpeg', '1682261045q7CYGccUdtQWYejNMT8z6SMy_0.jpeg', 'asd', 'asda', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,8 +101,8 @@ CREATE TABLE `comentarios` (
   `id_usuario` int(11) DEFAULT NULL,
   `id_anunucio` int(11) DEFAULT NULL,
   `id_resposta` int(11) DEFAULT NULL,
-  `mensagem` int(11) DEFAULT NULL,
-  `data` date DEFAULT NULL
+  `mensagem` text DEFAULT NULL,
+  `data` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -193,15 +212,17 @@ CREATE TABLE `placas_mae` (
   `modelo` varchar(100) DEFAULT NULL,
   `frequencia` int(11) DEFAULT NULL,
   `slots_ram` int(11) DEFAULT NULL,
-  `max_espaço_ram` int(11) DEFAULT NULL,
+  `max_espaco_ram` int(11) DEFAULT NULL,
   `soquete` varchar(25) DEFAULT NULL,
-  `slots_pcie_x1` int(11) DEFAULT NULL,
-  `slots_pcie_x4` int(11) DEFAULT NULL,
-  `slots_pcie_x16` int(11) DEFAULT NULL,
-  `slots_m2` int(11) DEFAULT NULL,
-  `slots_sata` int(11) DEFAULT NULL,
+  `pcie_x1` tinyint(1) DEFAULT NULL,
+  `pcie_x2` tinyint(1) NOT NULL,
+  `pcie_x4` tinyint(1) DEFAULT NULL,
+  `pcie_8x` tinyint(1) NOT NULL,
+  `pcie_x16` tinyint(1) DEFAULT NULL,
+  `pcie_32x` tinyint(1) NOT NULL,
   `tipo_memoria` varchar(20) DEFAULT NULL,
-  `fator_de_forma` varchar(20) DEFAULT NULL
+  `fator_de_forma` varchar(20) DEFAULT NULL,
+  `fabricante_processador` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -218,11 +239,68 @@ CREATE TABLE `processadores` (
   `fabricante` varchar(45) DEFAULT NULL,
   `modelo` varchar(100) DEFAULT NULL,
   `soquete` varchar(25) DEFAULT NULL,
-  `serie` varchar(20) DEFAULT NULL,
+  `linha` varchar(20) DEFAULT NULL,
   `nucelo` int(11) DEFAULT NULL,
   `frequencia` int(11) DEFAULT NULL,
   `video_integrado` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
+  `id_produto` int(11) NOT NULL,
+  `id_anuncio` int(11) DEFAULT NULL,
+  `id_vendedor` int(11) DEFAULT NULL,
+  `altura` int(11) DEFAULT NULL,
+  `barramento_encaixe_armazenamento` varchar(20) DEFAULT NULL,
+  `barramento_encaixe_video` varchar(20) DEFAULT NULL,
+  `barramentos_ram` int(11) DEFAULT NULL,
+  `barramentos_video` varchar(100) DEFAULT NULL,
+  `comprimento` int(11) DEFAULT NULL,
+  `ean` varchar(13) DEFAULT NULL,
+  `fabricante` varchar(45) DEFAULT NULL,
+  `fab_comp` varchar(20) DEFAULT NULL,
+  `fator_forma` varchar(20) DEFAULT NULL,
+  `formato_gabinete` varchar(10) DEFAULT NULL,
+  `frequencia` int(11) DEFAULT NULL,
+  `largura` int(11) DEFAULT NULL,
+  `linha` varchar(50) DEFAULT NULL,
+  `modelo` varchar(100) DEFAULT NULL,
+  `max_ram` int(11) DEFAULT NULL,
+  `nucleos` int(11) DEFAULT NULL,
+  `potencia` int(11) DEFAULT NULL,
+  `quantidade_armazenamento` int(11) DEFAULT NULL,
+  `quantidade_pentes` int(11) DEFAULT NULL,
+  `ram_pente_individual` int(11) DEFAULT NULL,
+  `ram_placa_video` int(11) DEFAULT NULL,
+  `ram_total` int(11) DEFAULT NULL,
+  `resfriamento` varchar(25) DEFAULT NULL,
+  `soquete` varchar(25) DEFAULT NULL,
+  `selo_80_plus` varchar(30) DEFAULT NULL,
+  `suporta_sata` tinyint(1) DEFAULT NULL,
+  `suporta_nvme` tinyint(1) DEFAULT NULL,
+  `tipo_armazenamento` varchar(5) DEFAULT NULL,
+  `tipo_ram` varchar(20) DEFAULT NULL,
+  `video_integrado` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id_produto`, `id_anuncio`, `id_vendedor`, `altura`, `barramento_encaixe_armazenamento`, `barramento_encaixe_video`, `barramentos_ram`, `barramentos_video`, `comprimento`, `ean`, `fabricante`, `fab_comp`, `fator_forma`, `formato_gabinete`, `frequencia`, `largura`, `linha`, `modelo`, `max_ram`, `nucleos`, `potencia`, `quantidade_armazenamento`, `quantidade_pentes`, `ram_pente_individual`, `ram_placa_video`, `ram_total`, `resfriamento`, `soquete`, `selo_80_plus`, `suporta_sata`, `suporta_nvme`, `tipo_armazenamento`, `tipo_ram`, `video_integrado`) VALUES
+(1, 1, 1, NULL, NULL, 'x16', NULL, NULL, NULL, '1111111111111', 'Nvidia', NULL, NULL, NULL, 1800, NULL, NULL, 'RTX 3090', NULL, NULL, NULL, NULL, NULL, NULL, 16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, 1, NULL, NULL, NULL, 4, 'x16', NULL, '1111111111111', 'ASUS', 'intel', 'atx', NULL, 3666, NULL, NULL, 'ROG STRIX Z490-A GAMING', 256, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LGA1200', NULL, 1, 1, NULL, 'DDR4', NULL),
+(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '1111111111112', 'Intel', NULL, NULL, NULL, 3800, NULL, 'i7', 'Core i7-10700K', NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LGA1200', NULL, NULL, NULL, NULL, NULL, 0),
+(5, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2222222222222', 'HyperX', NULL, NULL, NULL, 3666, NULL, NULL, 'Fury', NULL, NULL, NULL, NULL, 1, 16, NULL, 16, NULL, NULL, NULL, NULL, NULL, NULL, 'DDR4', NULL),
+(6, 1, 1, NULL, 'sata', NULL, NULL, NULL, NULL, '3333333333333', 'Seagate', NULL, NULL, NULL, NULL, NULL, NULL, 'Barracuda', NULL, NULL, NULL, 1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pcie', NULL, NULL),
+(7, 1, 1, 410, NULL, NULL, NULL, NULL, 330, '9999999999999', 'TGT', NULL, 'atx', 'mid', NULL, 180, NULL, 'Erion', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '7777777777777', 'Corsair', NULL, 'atx', NULL, NULL, NULL, NULL, 'CV550', NULL, NULL, 550, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bronze', NULL, NULL, NULL, NULL, NULL),
+(9, 1, 1, 6, NULL, NULL, NULL, NULL, 120, '8888888888888', 'DeepCool', NULL, NULL, NULL, NULL, 300, NULL, 'LE520', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'liquid', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -242,8 +320,22 @@ CREATE TABLE `usuarios` (
   `razao_social` varchar(150) DEFAULT NULL,
   `tributo` varchar(20) DEFAULT NULL,
   `nome_fantasia` varchar(50) DEFAULT NULL,
-  `telefone_empresa` varchar(10) DEFAULT NULL
+  `telefone_empresa` varchar(10) DEFAULT NULL,
+  `cep` varchar(8) DEFAULT NULL,
+  `logradouro` varchar(150) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL,
+  `complemento` varchar(30) DEFAULT NULL,
+  `bairro` varchar(50) DEFAULT NULL,
+  `cidade` varchar(50) DEFAULT NULL,
+  `referencia` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `cpf`, `cnpj`, `data_nasc`, `celular`, `email`, `senha`, `nome`, `razao_social`, `tributo`, `nome_fantasia`, `telefone_empresa`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `referencia`) VALUES
+(3, '48425476852', NULL, '2006-02-07', '(11 11111-1', 'leonardofilippetto01@gmail.com', '$2y$12$yuwohQsEMDDVO10CB2rmC.Y.yEU9/IVS67AuXHKB./GI9mGN1qp2C', 'biscoito asdasdas', NULL, NULL, NULL, NULL, '11111111', 'rua dos aimorés', '480', 'Apto. P13', 'Vila Costa e Silva', 'Campinas', 'ao lado do mercado Dia');
 
 -- --------------------------------------------------------
 
@@ -257,7 +349,7 @@ CREATE TABLE `vendas` (
   `ids_anuncios` text DEFAULT NULL,
   `qunatidades` text DEFAULT NULL,
   `preco_total` decimal(9,2) DEFAULT NULL,
-  `data` varchar(45) DEFAULT NULL,
+  `data` timestamp NULL DEFAULT current_timestamp(),
   `transportadora` varchar(40) DEFAULT NULL,
   `valor_frete` decimal(9,2) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
@@ -334,6 +426,12 @@ ALTER TABLE `processadores`
   ADD PRIMARY KEY (`id_produto`);
 
 --
+-- Índices para tabela `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -354,7 +452,7 @@ ALTER TABLE `vendas`
 -- AUTO_INCREMENT de tabela `anuncios`
 --
 ALTER TABLE `anuncios`
-  MODIFY `id_anuncio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anuncio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `armazenamento`
@@ -417,10 +515,16 @@ ALTER TABLE `processadores`
   MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `vendas`
