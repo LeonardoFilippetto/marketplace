@@ -49,12 +49,23 @@ if(isset($_POST['descricao'])){
     $_SESSION['post']['anuncio']['imgs_sec']=$nome_imgs_sec;
 
     //**adicionar info vendedor**
+    $query_anuncio=retorna_query_anuncio($_SESSION['post']['anuncio'], $_SESSION['id_usuario']);
+    $result = mysqli_query($con, $query_anuncio);
 
-    $query_produto=retorna_query_produto($_SESSION['post']['produto'], $_SESSION[], 1);
-    $query_anuncio=retorna_query_anuncio($_SESSION['post']['anuncio'], 1);
+
+    $query_sel_anuncio = "SELECT id_anuncio FROM anuncios WHERE id_usuario='".$_SESSION['id_usuario']."' ORDER BY id_anuncio DESC LIMIT 1";
+    $result = mysqli_query($con, $query_sel_anuncio);
+    //verificar funcionamento
+    $row = mysqli_fetch_array($result);
+    $id_anuncio=$row['id_anuncio'];
+
+
+
+    
+
+    $query_produto=retorna_query_produto($_SESSION['post']['produto'], $_SESSION['id_usuario'], $id_anuncio);
 
     $result = mysqli_query($con, $query_produto);
-    $result = mysqli_query($con, $query_anuncio);
 
     echo("<script>alert('dados cadastrados')</script>");
     unset($_SESSION['post']);
