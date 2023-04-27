@@ -50,7 +50,7 @@ if(isset($_POST['descricao'])){
 
     //**adicionar info vendedor**
 
-    $query_produto=retorna_query_produto($_SESSION['post']['produto'], 1, 1);
+    $query_produto=retorna_query_produto($_SESSION['post']['produto'], $_SESSION[], 1);
     $query_anuncio=retorna_query_anuncio($_SESSION['post']['anuncio'], 1);
 
     $result = mysqli_query($con, $query_produto);

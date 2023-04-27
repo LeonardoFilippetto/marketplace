@@ -11,7 +11,7 @@ if(isset($_POST['email'])){
     /*$options = ['cost' => 12,];
     $senha_hash = password_hash($senha, PASSWORD_BCRYPT, $options);*/
     
-    $query = "SELECT email, senha FROM usuarios WHERE email='".$email_form."'";
+    $query = "SELECT email, senha, id_usuario FROM usuarios WHERE email='".$email_form."'";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_array($result);
 
@@ -19,10 +19,12 @@ if(isset($_POST['email'])){
 
         $senha_bd=$row['senha'];
         $email_bd=$row['email'];
+        $id_bd=$row['id_usuario'];
 
         if(password_verify($senha_form, $senha_bd)) {
             session_start();
-            $_SESSION["email"] = $email_bd;
+            $_SESSION["email_usuario"] = $email_bd;
+            $_SESSION["id_usuario"] = $id_bd;
             if($pagina_anterior){
                 header("Location:$pagina_anterior");
             }else{
