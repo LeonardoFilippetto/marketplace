@@ -70,6 +70,8 @@ if(isset($_POST['descricao'])){
     echo("<script>alert('dados cadastrados')</script>");
     unset($_SESSION['post']);
 
+}else{
+    header("Location:index.php");
 }
 /*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 

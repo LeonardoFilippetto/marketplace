@@ -24,7 +24,7 @@
             </div>
 
             <ul>
-                <li><a href="#">Entrar</a></li>
+                <li><a href="login.php">Entrar</a></li>
             </ul>
         </nav>
 

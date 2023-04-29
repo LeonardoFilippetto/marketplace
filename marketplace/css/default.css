@@ -10,7 +10,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     background-color: #ffff;
-    min-height: 100vh;
+    min-height: 90vh;
+    padding-top: 10vh;
 }
 
 header {

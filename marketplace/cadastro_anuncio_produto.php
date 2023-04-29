@@ -29,6 +29,8 @@ if(isset($_POST['titulo_anuncio'])){
         $form_produto = $form_cooler;
     }
     //$celular=str_replace("-","", $_POST['celular']);
+}else{
+  header("Location:index.php");
 }
 /*if(isset($_POST['numero'])){
     $numero_form=$_POST['numero'];

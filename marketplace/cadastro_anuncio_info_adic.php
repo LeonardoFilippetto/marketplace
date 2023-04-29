@@ -4,6 +4,8 @@ if(isset($_POST['ean'])){
     $_SESSION['post']['produto']=$_POST;
     $_SESSION['post']['produto']['tipo_produto']=$_SESSION['post']['anuncio']['tipo_produto'];
     //$celular=str_replace("-","", $_POST['celular']);
+}else{
+  header("Location:index.php");
 }
 /*if(isset($_POST['numero'])){
     $numero_form=$_POST['numero'];

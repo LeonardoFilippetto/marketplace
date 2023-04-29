@@ -31,7 +31,7 @@ if(isset($_POST['numero'])){
         $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cpf, email, senha, celular) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cpf_form', '$email_form', '$senha', '$cel_form')";
 
         echo "Sucesso 😊";
-
+        header("Location:index.php");
     }else{
         $cnpj_form=$_POST['cnpj'];
         $nome_fant_form=$_POST['nome_fant'];
