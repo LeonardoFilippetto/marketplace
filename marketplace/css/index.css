@@ -141,6 +141,17 @@ input[type=text] {
     transition: 0.5s;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+#lupa:hover{
+    cursor: pointer;
+}
+
 .btn_anunc:hover {
     opacity: 0.7;
 }

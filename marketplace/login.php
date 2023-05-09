@@ -50,56 +50,8 @@ if(isset($_POST['email'])){
     <title>login</title>
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<style>
-        *{
-            color: #fff;
-        }
-        header{
-            background-color: #5f17ea;
-            border-bottom: solid 5px #0123;
-        }
-        footer{
-            background-color: #5f17ea;
-            border-top: solid 5px #0123;
-        }
-        .logo-stockpc{
-           max-width: 300px;
-           margin-top: -10px;
-        }
-        body{
-            background-color: #222;
-        }
-        #form_container{
-            backdrop-filter: blur(0px);
-            color: #fff;
-            background-color:#434343;
-            box-shadow: 0px 0px 10px #222;
-            border: none;
-        
-        }
-        #botao{
-            color: #fff;
-            background-color: #222;
-        }
-        form input{
-            border: solid 2px #434343;
-            background-color: #333;
-        }
-        #cadastro{
-            background-color: #333;
-            height: 40px;
-            width: 350px ;
-            text-decoration: none;
-        }
-        #cadastro a{
-            color: #111;
-        }
-        .entrar{
-            font-size: 1.4em;
-        }
-
-</style>
 <body>
     <header>
         <div id="logo"><img src="img/stockpc/Stockpc_escrito.png" alt="StockPC Logo" class="logo-stockpc"></div>
