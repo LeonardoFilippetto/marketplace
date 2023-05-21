@@ -27,14 +27,19 @@ else{
 
     $imagens_secundarias = explode(",", $string_imgs_sec);
 
-    $query="SELECT nome, nome_fantasia, razao_social FROM usuarios WHERE id_usuario='$id_vendedor' LIMIT 1";
+    $query="SELECT usuarios.nome AS nome, usuarios.nome_fantasia AS nome_fantasia, usuarios.razao_social AS razao_social, produtos.* FROM usuarios INNER JOIN produtos ON usuarios.id_usuario=produtos.id_vendedor WHERE produtos.id_anuncio='$id_anunc'";
     $result = mysqli_query($con, $query);
-    $row_vend = mysqli_fetch_array($result);
+    $row_vend_prod = mysqli_fetch_array($result);
     
-    $razao_social=$row_vend['razao_social'];
-    $nome_fantasia=$row_vend['nome_fantasia'];
-    $nome=$row_vend['nome'];
+    // echo"<pre>";
+    // print_r($row_vend_prod);
+    // echo"</pre>";
 
+    $razao_social=$row_vend_prod['razao_social'];
+    $nome_fantasia=$row_vend_prod['nome_fantasia'];
+    $nome=$row_vend_prod['nome'];
+
+    $fabricante=$row_vend_prod['fabricante'];
 
 }
 ?>
@@ -45,8 +50,14 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo; ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/anuncio.css">
+    <script src="js/busca.js"></script>
     <style>
     #logo2 {
         font-size: 24px;
@@ -114,16 +125,14 @@ else{
     <nav>
         <a href="#" id="logo2">STOCKPC</a>
 
-        <form action="" method="post" id="frm_busca">
+        <form action="" method="post" id="frm_busca" autocomplete="off">
             <div class="search-container">
                 <input type="text" placeholder="Buscar" name="search" id="busca">
-                <img src="img/stockpc/Stockpc.png" alt="" style="height:1rem; margin:0.2rem;" id="lupa">
+                <img src="img/procurar.svg" alt="" style="height:1rem; margin:0.2rem;" id="lupa">
             </div>
         </form>
 
-        <ul>
-            <li><a href="login.php">Entrar</a></li>
-        </ul>
+        <a href="login.php">Entrar</a>
     </nav>
 
     </header>
@@ -146,11 +155,11 @@ else{
 
         <div id="info_principal"  class="secao_main">
             <div id="info_geral">
-                <p>**avaliação** **condição** **fabricante**</p>
+                <p>**avaliação** **condição** <?php echo $fabricante; ?></p>
             </div>
             <div id="frete">
                 <?php if(!isset($_SESSION['id_usuario'])){?>
-                    <label for="cep">Insira o CEP para calcular frete e prazo de entrega:</label>
+                    <label for="cep">Insira o CEP para calcular frete e prazo de entrega:</label><br>
                     <input type="number" onKeyPress="if(this.value.length==8) return false;" id="cep" name="cep" placeholder="12345678" > <button id="frete">OK</button> 
                 <?php } else{?>
                     <p>**frete** **endereço** **alterar endereço**</p>
