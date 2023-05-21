@@ -1,16 +1,41 @@
 <?php
+/*$query="SELECT * FROM anuncios WHERE titulo_anuncio LIKE'%$termo_busca%";
+//result
+If(mysqli_num_rows($result)==0){
+$palavras_busca=explode(' ', $termo_busca);
+$query="SELECT * FROM anuncios WHERE ";
+Foreach($palavras_busca as $palavra){
+    $query.="titulo_anuncio LIKE'%$palavra%' OR ";
+}
+    $query= rtrim('OR ', $query);
+//result
+} */
 require("conexao.php");
 if(isset($_POST['search'])){
     $termo_busca=strtolower($_POST['search']);
-    echo $termo_busca."<br>";
-    $palavras_busca = explode(' ', $termo_busca);
-    $query = "SELECT * FROM anuncios WHERE ";
-    foreach ($palavras_busca as $palavra) {
-      $query .= "LEVENSHTEIN_CONTAINS('%$palavra%', titulo_anuncio, 3) OR ";
-    }
-    $query = rtrim($query, "OR "); 
-    echo $query."<br>";
+
+    $query="SELECT * FROM anuncios WHERE LOWER(titulo_anuncio) LIKE'%$termo_busca%'";
     $result = mysqli_query($con, $query);
+    if(mysqli_num_rows($result)==0){
+        $palavras_busca=explode(' ', $termo_busca);
+        $query="SELECT * FROM anuncios WHERE ";
+        foreach($palavras_busca as $palavra){
+            $query.="LOWER(titulo_anuncio) LIKE'%$palavra%' OR ";
+        }
+        $query= rtrim($query, ' OR ');
+        $result = mysqli_query($con, $query);
+        if(mysqli_num_rows($result)==0){
+            echo $termo_busca."<br>";
+            $query = "SELECT * FROM anuncios WHERE ";
+            foreach ($palavras_busca as $palavra) {
+              $query .= "LEVENSHTEIN_CONTAINS('$palavra', titulo_anuncio, ".strlen($palavra)/2 .") OR ";
+            }
+            $query = rtrim($query, "OR "); 
+            echo $query."<br>";
+            $result = mysqli_query($con, $query);
+        }
+    } 
+
 }   
 ?>
 <!DOCTYPE html>
@@ -34,16 +59,14 @@ if(isset($_POST['search'])){
         <nav>
             <a href="#" id="logo2">STOCKPC</a>
      
-            <form action="" method="post" id="frm_busca">
+            <form action="" method="post" id="frm_busca" autocomplete="off">
                 <div class="search-container">
                      <input type="text" placeholder="Buscar" name="search" id="busca">
-                     <img src="img/stockpc/Stockpc.png" alt="" style="height:1rem; margin:0.2rem;" id="lupa">
+                     <img src="img/procurar.svg" alt="" style="height:1rem; margin:0.2rem;" id="lupa">
                 </div>
             </form>
 
-            <ul>
-                <li><a href="login.php">Entrar</a></li>
-            </ul>
+            <a href="login.php">Entrar</a>
         </nav>
 
     </header>
