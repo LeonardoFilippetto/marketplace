@@ -1,9 +1,4 @@
 <?php
-/*
-
-*
-
-*/
 require("conexao.php");
 session_start();
 if(isset($_POST["pagina_anterior"])){
@@ -31,7 +26,7 @@ if(isset($_POST['numero'])){
         $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cpf, email, senha, celular) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cpf_form', '$email_form', '$senha', '$cel_form')";
 
         echo "Sucesso 😊";
-        header("Location:index.php");
+        header("Location:meus_anuncios.php");
     }else{
         $cnpj_form=$_POST['cnpj'];
         $nome_fant_form=$_POST['nome_fant'];
@@ -44,7 +39,7 @@ if(isset($_POST['numero'])){
             $query = "INSERT INTO usuarios (cep, logradouro, data_nasc, numero, bairro, complemento, cidade, referencia, nome, cnpj, email, senha, celular, razao_social, tributo, nome_fantasia) VALUES ('$cep_form', '$logradouro_form', '$data_form', '$numero_form', '$bairro_form', '$complemento_form', '$cidade_form', '$referencia_form', '$nome_form', '$cnpj_form', '$email_form', '$senha', '$cel_form', '$raz_soc_form', '$tributo_form', '$nome_fant_form')";
         }
 
-       
+        
 
     }
     $result = mysqli_query($con, $query);

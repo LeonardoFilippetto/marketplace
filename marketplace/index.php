@@ -83,13 +83,14 @@ if(mysqli_num_rows($result)!=0){
         echo $preco."<br>";
         echo "<img src='img/".$img_princ."' width='200px'><br><br>";*/
 
-        echo"<div class='anuncio'>
+        echo"<div class='anuncio' id='".$id_anunc."' onclick='pagAnunc(event)'>
             <div class='img_anunc'>
                 <img src='img/".$img_princ."' >
             </div>
             <span class='titulo_anunc'>$nome_prod</span>
             <span class='preco'>R$ ".$preco."</span>
-            <form id='form_carrinho' action='precarrinho.php?id=".$id_anunc."'>
+            <form id='form_carrinho' method='post' action='precarrinho.php'>
+                <input type='hidden' value='".$id_anunc."' name='id_anunc'>
                 <button class='btn_anunc'>COMPRAR</button>
             </form>
         </div>";

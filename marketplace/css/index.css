@@ -60,7 +60,7 @@ input[type=text] {
 
 }
 
-.search-container button {
+/*.search-container button {
     float: right;
     padding: 6px 10px;
     margin-top: 8px;
@@ -75,7 +75,7 @@ input[type=text] {
 
 .search-container button:hover {
     background: #ccc;
-}
+}*/
 
 
 #grid {
