@@ -39,7 +39,7 @@ if(isset($_POST['excl'])){
 
             <div class="search-container">
                 <input type="text" placeholder="Buscar" name="search" >
-                <img src="img/stockpc/Stockpc.png" alt="" style="height:1rem; margin:0.2rem;">
+                <img src="img/procurar.svg" alt="" style="height:1rem; margin:0.2rem;">
             </div>
 
             <ul>
